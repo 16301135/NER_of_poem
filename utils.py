@@ -1,5 +1,5 @@
 # 数据相关的配置
-event_type = "cluener"
+event_type = "tangshi"
 
 train_file_path = "./data/%s.train" % event_type
 dev_file_path = "./data/%s.dev" % event_type

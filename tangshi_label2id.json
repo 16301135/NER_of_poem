@@ -1,0 +1,9 @@
+{
+  "O": 1,
+  "B-TIME": 2,
+  "B-ATMOS": 3,
+  "B-Image": 4,
+  "I-Image": 5,
+  "I-ATMOS": 6,
+  "I-TIME": 7
+}

@@ -10,7 +10,7 @@ def Process_docx(filePath):
 def Take_first(elem):
     return elem[1]
 
-targetPath = 'data/labed_tangshi'
+targetPath = 'data/1labed_tangshi'
 yixiangs=Process_docx('data/古诗意象.docx')
 shijians=Process_docx('data/古文时间词.docx')
 qixiangs=Process_docx('data/古诗气象词.docx')
@@ -49,26 +49,30 @@ while num<=57:
 
             index_list.sort(key=Take_first)
             index2 = 0
-            for (index1,ch) in enumerate(paragraph):
-                flag = 0
-                if len(index_list) < index2+1 :
-                    break
-                if index1 == index_list[index2][0]:
-                    target_f.write(ch+' B-'+index_list[index2][2])
-                    flag = 1
+            #flag = 0
+            if len(index_list) > 0:
+                for (index1,ch) in enumerate(paragraph):
 
-                elif index1 > index_list[index2][0] and index1 <= index_list[index2][1]:
-                    flag = 1
-                    target_f.write(ch + ' I-' + index_list[index2][2])
-                    if index1 == index_list[index2][1]:
-                        index2 = index2+1
+                    if len(index_list) < index2+1 :
+                        target_f.write(ch + ' O')
+                    elif index1 == index_list[index2][0]:
+                        target_f.write(ch+' B-'+index_list[index2][2])
+                        #flag = 1
+                        if index1 == index_list[index2][1]:
+                            index2 = index2+1
 
-                else:
-                    flag = 1
-                    target_f.write(ch+' O')
+                    elif index1 > index_list[index2][0] and index1 <= index_list[index2][1]:
+                        #flag = 1
+                        target_f.write(ch + ' I-' + index_list[index2][2])
+                        if index1 == index_list[index2][1]:
+                            index2 = index2+1
 
-                target_f.write('\n')
-            if flag == 1:
+                    else:
+                        #flag = 1
+                        target_f.write(ch+' O')
+
+                    target_f.write('\n')
+                #if flag == 1:
                 target_f.write('\n')
     num = num + 1
 target_f.close()
